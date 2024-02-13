@@ -1,43 +1,60 @@
 import axios from 'axios';
-const url = 'https://api.themoviedb.org/3';
-const API_KEY = 'e4a8696eee08b7b816fc51eb8d97a3cc';
+
+const url = 'https://api.themoviedb.org/3/search/movie';
+const urlTrend = 'https://api.themoviedb.org/3/trending/movie/week';
+// const urlMovieID = 'https://api.themoviedb.org/3/movie/';
+
+const API_KEY = '3e29d1368b4df9e4dcbc5ad16f462ff1';
 
 const options = {
   params: {
+    api_key: API_KEY,
     include_adult: false,
     language: 'en-US',
     page: 1,
   },
-  headers: {
-    Authorization: `Bearer ${API_KEY}`,
-  },
 };
 
 export const getFilm = async query => {
-  const response = await axios.get(`search/movie?query=${query}`);
-  console.log(response);
-  return response.data;
+  try {
+    const response = await axios.get(url, {
+      params: {
+        ...options.params,
+        query: query,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-axios
-  .get(`${url}/search/movie`, options)
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+export const getTrendMovies = async query => {
+  try {
+    const response = await axios.get(urlTrend, {
+      params: {
+        ...options.params,
+        query: query,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
-// import axios from 'axios';
-
-// const API_KEY = 'e4a8696eee08b7b816fc51eb8d97a3cc';
-// axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-// axios.defaults.headers.common['Authorization'] = `Bearer ${API_KEY}`;
-// axios.defaults.params = {
-//   include_adult: false,
-//   language: 'en-US',
-//   page: 1,
-// };
-
-// export const getFilm = async query => {
-//   const response = await axios.get(`search/movie?query=${query}`);
-//   console.log(response);
-
-//   return response.data;
-// };
+export const getMoviesId = async movieId => {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
+      params: {
+        ...options.params,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
