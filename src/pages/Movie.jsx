@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import MovieDetails from '../conponents/MovieDetails';
 import SearchMovie from '../conponents/SearchMovie';
 import { getFilm, getMoviesId } from '../api';
 
@@ -38,24 +37,7 @@ export default function Movie() {
       <SearchMovie onSearch={searchFilms} />
       {movie && (
         <div>
-          <div>
-            <div>
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-            </div>
-            <div>
-              <h1>{movie.title}</h1>
-              <h2>
-                User Score:
-                <p>{movie.vote_average}</p>
-              </h2>
-
-              <h2>Overview:</h2>
-              <p>{movie.overview}</p>
-
-              <h2>Genres:</h2>
-              {movie.genres && <p>{movie.genres.map(genre => genre.name).join(', ')}</p>}
-            </div>
-          </div>
+          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
         </div>
       )}
     </div>
