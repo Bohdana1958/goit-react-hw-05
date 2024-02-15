@@ -1,15 +1,16 @@
+import { Link, useLocation } from 'react-router-dom';
+
 const MovieDetails = ({ items }) => {
+  const location = useLocation();
+  console.log('MD', location);
+
   return (
     <ul>
       {items.map(item => (
         <li key={item.id}>
-          <a
-            href={`https://www.themoviedb.org/movie/${item.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link to={`/movie/${item.id}`} state={location}>
             {item.title}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

@@ -1,18 +1,30 @@
+import { Link } from 'react-router-dom';
+
 const TrendingMovies = ({ items }) => {
   return (
     <ul>
       {items.map(item => (
         <li key={item.id}>
-          <a
-            href={`https://www.themoviedb.org/movie/${item.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {item.title}
-          </a>
+          <Link to={`/movie/${item.id}`}>{item.title}</Link>
         </li>
       ))}
     </ul>
   );
 };
 export default TrendingMovies;
+
+// function createMarkup(array) {
+//   return (
+//     <ul>
+//       {array.map(item => {
+//         return (
+//           <li key={item.id}>
+//             <Link to={'/movies/' + item.id} state={location}>
+//               {item.title}
+//             </Link>
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   );
+// }
