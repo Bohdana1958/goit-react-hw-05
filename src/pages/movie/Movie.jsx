@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import SearchMovie from '../conponents/SearchMovie';
-import { getFilm } from '../api';
-import MovieDetails from '../conponents/MovieDetails';
-import { Loader } from '../conponents/Loader';
+import { useState, useEffect } from 'react';
+import SearchMovie from '../../conponents/Search/SearchMovie';
+import { getFilm } from '../../api';
+import MovieDetails from '../../conponents/MovieDetails/MovieDetails';
+import { Loader } from '../../conponents/Loader/Loader';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 export default function Movie() {
   const location = useLocation();
-  console.log(location);
+  console.log('movie', location);
+
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,12 +32,18 @@ export default function Movie() {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    if (search.trim() !== '') {
+      searchFilms(search);
+    }
+  }, [search]);
 
   return (
     <div>
       {error && <p>Oops! Something went wrong. Please try again later.</p>}
       {loading && <Loader />}
-      <SearchMovie onSearch={searchFilms} value={search} onChange={changeSearch} />
+      <SearchMovie onSearch={changeSearch} value={search} />
+
       {films.length > 0 && <MovieDetails items={films} />}
     </div>
   );

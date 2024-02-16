@@ -1,19 +1,19 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import Home from '../../pages/Home';
-import NavBar from '../NavBar';
+import NavBar from '../NavBar/NavBar';
 // import Movie from '../../pages/Movie';
 // import NotFoundPage from '../NotFoundPage';
 // import MovieDetailsPage from '../../pages/MovieDetailsPage';
 // import Cast from '../Cast';
 // import Reviews from '../Reviews';
 function App() {
-  const Home = lazy(() => import('../../pages/Home'));
-  const Movie = lazy(() => import('../../pages/Movie'));
-  const NotFoundPage = lazy(() => import('../NotFoundPage'));
-  const MovieDetailsPage = lazy(() => import('../../pages/MovieDetailsPage'));
-  const Cast = lazy(() => import('../Cast'));
-  const Reviews = lazy(() => import('../Reviews'));
+  const Home = lazy(() => import('../../pages/Home/Home'));
+  const Movie = lazy(() => import('../../pages/movie/Movie'));
+  const NotFoundPage = lazy(() => import('../NotFoundPage/NotFoundPage'));
+  const MovieDetailsPage = lazy(() => import('../../pages/MoviedetailsPage/MovieDetailsPage'));
+  const Cast = lazy(() => import('../Cast/Cast'));
+  const Reviews = lazy(() => import('../Reviews/Reviews'));
 
   return (
     <>

@@ -1,4 +1,7 @@
-const SearchMovie = ({ onSearch, value, onChange }) => {
+import css from './SearchMovie.module.css';
+
+import { FiSearch } from 'react-icons/fi';
+const SearchMovie = ({ onSearch }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const query = e.target.elements.search.value;
@@ -7,16 +10,17 @@ const SearchMovie = ({ onSearch, value, onChange }) => {
     e.target.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={css.form}>
       <input
         placeholder="What film do you search?"
         name="search"
+        className={css.input}
         required
         autoFocus
-        value={value}
-        onChange={e => onChange(e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button className={css.btn} type="submit">
+        <FiSearch size="20px" />
+      </button>
     </form>
   );
 };

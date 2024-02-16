@@ -1,10 +1,10 @@
 import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { getMoviesId } from '../api';
+import { getMoviesId } from '../../api';
 import clsx from 'clsx';
 
 import css from './MovieDetailsPage.module.css';
-import { BackLink } from '../conponents/BackLink';
+import BackLink from '../../conponents/BackLink/BackLink';
 
 export default function MovieDetailsPage() {
   const location = useLocation();
@@ -42,14 +42,13 @@ export default function MovieDetailsPage() {
 
       {movie && (
         <div>
-          <h1>{movie.title}</h1>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+          <h1>{movie.title}</h1>
           <h2>
-            User Score:
-            <p>{movie.vote_average}</p>
+            User Score: <p>{movie.vote_average}</p>
           </h2>
           <p>{movie.overview}</p>
-          <p>Genres: {movie.genres.map(genre => genre.name).join(', ')}</p>
+          <p className={css.text}>Genres: {movie.genres.map(genre => genre.name).join(', ')}</p>
           <div className={css.nav}>
             <NavLink to="cast" className={buildLinkClass}>
               Cast
