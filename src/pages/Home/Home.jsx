@@ -32,8 +32,7 @@ export default function Home() {
     <div>
       <h1>Trending Today</h1>
       {error && <p>Oops! Something went wrong. Please try again later.</p>}
-      {loading && <Loader />}
-      {movies.length > 0 && <TrendingMovies items={movies} />}
+      {loading ? <Loader /> : movies.length > 0 && <TrendingMovies items={movies} />}
     </div>
   );
 }

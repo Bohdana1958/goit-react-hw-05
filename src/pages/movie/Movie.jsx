@@ -41,10 +41,19 @@ export default function Movie() {
   return (
     <div>
       {error && <p>Oops! Something went wrong. Please try again later.</p>}
-      {loading && <Loader />}
-      <SearchMovie onSearch={changeSearch} value={search} />
-
-      {films.length > 0 && <MovieDetails items={films} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <SearchMovie onSearch={changeSearch} value={search} />
+          {films.length > 0 && <MovieDetails items={films} />}
+        </>
+      )}
     </div>
   );
 }
+
+// {loading && <Loader />}
+// <SearchMovie onSearch={changeSearch} value={search} />
+
+// {films.length > 0 && <MovieDetails items={films} />}
